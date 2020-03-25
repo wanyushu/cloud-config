@@ -1,7 +1,7 @@
 #注意：如果在记事本上编写，下面的缩进不要使用Tab来缩进，不然报错
 ---
 server:
-  port: 6001 #端口号
+  port: 6002 #端口号
 spring:
   profiles: dev # 开发环境
   application:
