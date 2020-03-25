@@ -5,15 +5,16 @@ spring:
 ---
 server:
   port: 8001
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.yushu.entities  # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
+
 spring:
   profiles: dev # 开发环境
   application:
     name: microservice-product
-  mybatis:
-    config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-    type-aliases-package: com.yushu.entities  # 所有Entity别名类所在包
-    mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
-
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver             # mysql驱动包
@@ -41,17 +42,16 @@ feign:
     enabled: true # 开启服务熔断器
 ---
 server:
-  port: 8002
+  port: 8001
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.yushu.entities  # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
+
 spring:
   profiles: prod # 生产环境
   application:
     name: microservice-product
-
-  mybatis:
-    config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-    type-aliases-package: com.yushu.entities  # 所有Entity别名类所在包
-    mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
-
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver             # mysql驱动包
