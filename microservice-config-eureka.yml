@@ -18,7 +18,7 @@ eureka:
     enable-self-preservation: false # 禁用自我保护机制*****************
 ---
 server:
-  port: 6001 #端口号
+  port: 6002 #端口号
 spring:
   profiles: prod # 生产环境
   application:
@@ -31,6 +31,6 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://eureka6002.com:6002/eureka/
+      defaultZone: http://eureka6001.com:6001/eureka/
   server:
     enable-self-preservation: true #开启自我保护机制*****************
