@@ -2,7 +2,41 @@
 spring:
   profiles:
     active: dev # 激活开发环境配置
-
+---
+server:
+  port: 8002
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.why.entity # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
+spring:
+  profiles:
+    active: prod # 激活开发环境配置
+  application:
+    name: microservice-product #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver             # mysql驱动包
+    url: jdbc:mysql://192.168.10.11:33306/springcloud_db01?serverTimezone=GMT%2B8 # 数据库名称
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5                                # 数据库连接池的最小维持连接数
+      initial-size: 5                            # 初始化连接数
+      max-total: 5                               # 最大连接数
+      max-wait-millis: 150
+eureka:
+  client:
+    registerWithEureka: true # 服务注册，false表示不将本消费者注册到 Eureka 服务器
+    fetchRegistry: true # 服务发现，true从 Eureka 服务器中获取注册信息
+    serviceUrl:
+      defaultZone: http://eureka-svc1.com:6001/eureka,http://eureka-svc.com:6002/eureka
+  instance:
+    instanceId: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
+    preferIpAddress: true     #访问路径可以显示IP地址
+feign:
+  hystrix:
+    enabled: true # 开启服务熔断器
 ---
 server:
   port: 8001
@@ -36,43 +70,6 @@ eureka:
     instanceId: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
     preferIpAddress: true     #访问路径可以显示IP地址
 
-feign:
-  hystrix:
-    enabled: true # 开启服务熔断器
-
-
----
-server:
-  port: 8002
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-  type-aliases-package: com.why.entity # 所有Entity别名类所在包
-  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
-spring:
-  profiles:
-    active: prod # 激活开发环境配置
-  application:
-    name: microservice-product #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
-    driver-class-name: com.mysql.cj.jdbc.Driver             # mysql驱动包
-    url: jdbc:mysql://192.168.10.11:33306/springcloud_db01?serverTimezone=GMT%2B8 # 数据库名称
-    username: root
-    password: 123456
-    dbcp2:
-      min-idle: 5                                # 数据库连接池的最小维持连接数
-      initial-size: 5                            # 初始化连接数
-      max-total: 5                               # 最大连接数
-      max-wait-millis: 150
-eureka:
-  client:
-    registerWithEureka: true # 服务注册，false表示不将本消费者注册到 Eureka 服务器
-    fetchRegistry: true # 服务发现，true从 Eureka 服务器中获取注册信息
-    serviceUrl:
-      defaultZone: http://eureka-svc1:6001/eureka,http://eureka-svc:6002/eureka
-  instance:
-    instanceId: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
-    preferIpAddress: true     #访问路径可以显示IP地址
 feign:
   hystrix:
     enabled: true # 开启服务熔断器
