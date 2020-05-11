@@ -31,7 +31,7 @@ eureka:
     registerWithEureka: true # 服务注册，false表示不将本消费者注册到 Eureka 服务器
     fetchRegistry: false # 服务发现，true从 Eureka 服务器中获取注册信息
     serviceUrl:
-      defaultZone: http://192.168.10.11:6001/eureka,http://192.168.10.11:6002/eureka
+      defaultZone: http://eureka-svc1.com:6001/eureka,http://eureka-svc.com:6002/eureka
   instance:
     instanceId: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
     preferIpAddress: true     #访问路径可以显示IP地址
@@ -69,7 +69,7 @@ eureka:
     registerWithEureka: true # 服务注册，false表示不将本消费者注册到 Eureka 服务器
     fetchRegistry: true # 服务发现，true从 Eureka 服务器中获取注册信息
     serviceUrl:
-      defaultZone: http://192.168.10.11:6001/eureka,http://192.168.10.11:6002/eureka
+      defaultZone: http://eureka-svc1:6001/eureka,http://eureka-svc2:6002/eureka
   instance:
     instanceId: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
     preferIpAddress: true     #访问路径可以显示IP地址
