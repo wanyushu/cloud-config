@@ -5,10 +5,6 @@ spring:
 ---
 server:
   port: 8002
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-  type-aliases-package: com.why.entity # 所有Entity别名类所在包
-  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
 spring:
   profiles:
     active: prod # 激活开发环境配置
@@ -40,10 +36,6 @@ feign:
 ---
 server:
   port: 8001
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-  type-aliases-package: com.why.entity # 所有Entity别名类所在包
-  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapper映射文件
 spring:
   profiles:
     active: dev # 激活开发环境配置
