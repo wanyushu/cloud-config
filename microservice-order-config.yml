@@ -43,7 +43,7 @@ bubble:
   database: mysql
 ---
 server:
-  port: 8002
+  port: 9001
 spring:
   profiles:
     active: prod # 激活开发环境配置
@@ -74,7 +74,7 @@ feign:
     enabled: true # 开启服务熔断器
 ---
 server:
-  port: 8001
+  port: 9002
 spring:
   profiles:
     active: dev # 激活开发环境配置
