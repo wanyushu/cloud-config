@@ -13,11 +13,11 @@ hystrix:
           enabled: true   #是否开启超时熔断
         isolation:
           thread:
-            timeoutInMilliseconds: 100000
+            timeoutInMilliseconds: 200000
 
 ribbon:
-  ReadTimeout: 25000
-  ConnectTimeout: 25000
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
   MaxAutoRetries: 1
   MaxAutoRetriesNextServer: 1
   OkToRetryOnAllOperations: false  #只会对get请求进行重试。如果设置为true，便会对所有的请求进行重试
