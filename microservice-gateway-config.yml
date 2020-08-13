@@ -16,8 +16,8 @@ hystrix:
             timeoutInMilliseconds: 100000
 
 ribbon:
-  ReadTimeout: 20000
-  ConnectTimeout: 20000
+  ReadTimeout: 25000
+  ConnectTimeout: 25000
   MaxAutoRetries: 1
   MaxAutoRetriesNextServer: 1
   OkToRetryOnAllOperations: false  #只会对get请求进行重试。如果设置为true，便会对所有的请求进行重试
