@@ -2,6 +2,25 @@
 spring:
   profiles:
     active: dev # 激活开发环境配置
+#默认情况下,GET方式请求无论是连接异常还是读取异常,都会进行重试非GET方式请求,只有连接异常时,才会进行重试 ,如果不配置ribbon的重试次数，默认会重试一次
+#重试的次数:MaxAutoRetries+MaxAutoRetriesNextServer+(MaxAutoRetries *MaxAutoRetriesNextServer)
+#hystrix超时计算: (1 + MaxAutoRetries + MaxAutoRetriesNextServer) * ReadTimeout
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true   #是否开启超时熔断
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100000
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false  #只会对get请求进行重试。如果设置为true，便会对所有的请求进行重试
 ---
 server:
   port: 7000
@@ -43,7 +62,7 @@ spring:
   profiles:
     active: prod # 激活开发环境配置
   application:
-    name: microservice-zuul-gateway
+    name: microservice-gateway
 
 eureka:
   client:

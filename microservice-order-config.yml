@@ -2,6 +2,18 @@
 spring:
   profiles:
     active: dev # 激活开发环境配置
+  redis:
+    host: 192.168.0.28
+    port: 6379
+    password:
+    database: 0
+    timeout: 15000
+    maxAttempts: 5
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
 #mybatis
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*.xml
@@ -72,6 +84,16 @@ eureka:
 feign:
   hystrix:
     enabled: true # 开启服务熔断器
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000 #缺省为1000
+ribbon:
+  eureka:
+    enabled: true
 ---
 server:
   port: 9002
@@ -104,3 +126,13 @@ eureka:
 feign:
   hystrix:
     enabled: true # 开启服务熔断器
+ribbon:
+  eureka:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000 #缺省为1000
