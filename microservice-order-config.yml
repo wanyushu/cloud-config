@@ -4,7 +4,7 @@ spring:
     active: dev # 激活开发环境配置
   redis:
     host: 192.168.0.28
-    port: 6379
+    port: 36379
     password: 123456
     database: 0
     timeout: 15000
